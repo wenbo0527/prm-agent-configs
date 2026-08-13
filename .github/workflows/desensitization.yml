@@ -1,0 +1,83 @@
+name: 脱敏扫描
+
+# 自动扫描 PR / push 是否含敏感信息（真实姓名 / IP / token / 任务 ID / 项目代号）
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  desensitization-check:
+    runs-on: ubuntu-latest
+    name: 🔒 脱敏红线扫描
+    steps:
+      - name: 📥 Checkout 代码
+        uses: actions/checkout@v4
+
+      - name: 🔍 扫描敏感信息
+        id: scan
+        run: |
+          echo "::group::扫描敏感关键词"
+          # 跳过 .git / .github / docs/脱敏SOP.md / TOOLS.md.template（这些是反例）
+          SENSITIVE_FOUND=0
+          
+          # 1. 飞书 open_id
+          if grep -rE "ou_[a-f0-9]{16,}" \
+               --include="*.md" --include="*.template" \
+               --exclude-dir=".git" --exclude-dir=".github" \
+               . | grep -v "docs/脱敏SOP.md" | grep -v "templates/TOOLS.md.template"; then
+            echo "❌ 发现飞书 open_id"
+            SENSITIVE_FOUND=1
+          fi
+          
+          # 2. GitHub / API token
+          if grep -rE "(sk-[a-zA-Z0-9]{20,}|gho_[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{20,})" \
+               --include="*.md" --include="*.template" \
+               --exclude-dir=".git" --exclude-dir=".github" \
+               . | grep -v "docs/脱敏SOP.md"; then
+            echo "❌ 发现 API token"
+            SENSITIVE_FOUND=1
+          fi
+          
+          # 3. 真实 IP
+          if grep -rE "(192\.168\.[0-9]|10\.0\.[0-9]|118\.196\.79)" \
+               --include="*.md" --include="*.template" \
+               --exclude-dir=".git" --exclude-dir=".github" \
+               . | grep -v "docs/脱敏SOP.md" | grep -v "templates/TOOLS.md.template"; then
+            echo "❌ 发现真实 IP"
+            SENSITIVE_FOUND=1
+          fi
+          
+          # 4. 真实姓名（中文）
+          if grep -rE "(文博|张三|李四)" \
+               --include="*.md" --include="*.template" \
+               --exclude-dir=".git" --exclude-dir=".github" \
+               .; then
+            echo "❌ 发现真实姓名"
+            SENSITIVE_FOUND=1
+          fi
+          
+          # 5. 任务 ID / 候选号
+          if grep -rE "(TASK-202[0-9]{5}|候选 #[0-9]{3})" \
+               --include="*.md" --include="*.template" \
+               --exclude-dir=".git" --exclude-dir=".github" \
+               . | grep -v "docs/脱敏SOP.md" | grep -v "lessons/反冗长-3段式汇报.md"; then
+            echo "❌ 发现内部任务 ID / 候选号"
+            SENSITIVE_FOUND=1
+          fi
+          
+          echo "::endgroup::"
+          
+          if [ $SENSITIVE_FOUND -eq 1 ]; then
+            echo "::error::❌ 脱敏扫描失败，请参考 docs/脱敏SOP.md 修复后重试"
+            exit 1
+          fi
+          
+          echo "✅ 脱敏扫描通过：无真实姓名/IP/token/任务 ID/项目代号"
+
+      - name: ✅ 通过
+        if: steps.scan.outputs.SENSITIVE_FOUND != '1'
+        run: |
+          echo "🎉 脱敏扫描通过，可以合并"

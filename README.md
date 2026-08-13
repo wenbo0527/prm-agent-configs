@@ -1,5 +1,12 @@
 # prm-agent-configs · 产品需求管理全流程 agent 配置
 
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Language](https://img.shields.io/badge/language-中文-red.svg)]()
+[![Files](https://img.shields.io/badge/files-30-green.svg)]()
+[![Size](https://img.shields.io/badge/size-208KB-blue.svg)]()
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![GH Actions](https://img.shields.io/badge/GH%20Actions-脱敏扫描-success)](.github/workflows/desensitization.yml)
+
 > **聚焦**：从需求采集 → PRD → 派工 → 验收 → 上线 的完整多 agent 协作配置
 > **形态**：可 fork 可改的模板与 SOP 库
 > **协议**：MIT
