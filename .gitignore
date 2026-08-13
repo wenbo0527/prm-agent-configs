@@ -1,0 +1,29 @@
+# 防止误推敏感内容
+*.local
+*.bak
+*.bak-*
+*~
+.DS_Store
+.env
+.env.*
+credentials/
+*.db
+*.log
+memory.db
+sessions/
+cache/
+backups/
+archive/
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+
+# 个人调试
+drafts/
+scratch/
+test-output/
+
+# 真实项目代号（脱敏前请删除）
+# 见 docs/脱敏SOP.md

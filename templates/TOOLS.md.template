@@ -1,0 +1,41 @@
+# TOOLS.md.template · 本地工具笔记（v1.0）
+
+> **作用**：记录 agent 的本地环境特有配置（与 SKILL.md 共享规则区分）
+> **本仓原则**：Skills 定义 _how_ tools work · TOOLS.md 定义 _your_ specifics
+
+---
+
+## What Goes Here
+
+- 摄像头名称和位置
+- SSH 主机和别名
+- 首选 TTS 语音
+- 扬声器/HomePod 名称
+- 设备昵称
+- 任何环境特有的配置
+
+## Examples
+
+```markdown
+### Cameras
+
+- living-room → 主区域，180° 广角
+- front-door → 入口，运动触发
+
+### SSH
+
+- home-server → 192.168.1.100, user: admin
+
+### TTS
+
+- Preferred voice: "Nova" (warm, slightly British)
+- Default speaker: Kitchen HomePod
+```
+
+## Why Separate
+
+Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
+
+---
+
+Add whatever helps you do your job. This is your cheat sheet.
