@@ -1,3 +1,6 @@
+<!-- 🏆 精选项目（2026-08-13 标记） -->
+> 🏆 **本仓已被选为 [wenbo0527](https://github.com/wenbo0527) 个人主页 6 大核心项目之一**
+
 # prm-agent-configs · 产品需求管理全流程 agent 配置
 
 [![License: MIT](https://img.shields.io/github/license/wenbo0527/prm-agent-configs?color=blue)](LICENSE)
