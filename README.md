@@ -1,9 +1,10 @@
 # prm-agent-configs · 产品需求管理全流程 agent 配置
 
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/github/license/wenbo0527/prm-agent-configs?color=blue)](LICENSE)
 [![Language](https://img.shields.io/badge/language-中文-red.svg)]()
-[![Files](https://img.shields.io/badge/files-30-green.svg)]()
-[![Size](https://img.shields.io/badge/size-208KB-blue.svg)]()
+[![Stars](https://img.shields.io/github/stars/wenbo0527/prm-agent-configs?style=social)]()
+[![Last Commit](https://img.shields.io/github/last-commit/wenbo0527/prm-agent-configs)]()
+[![Commit Since v1.0](https://img.shields.io/github/commits-since/wenbo0527/prm-agent-configs/v1.0.0)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![GH Actions](https://img.shields.io/badge/GH%20Actions-脱敏扫描-success)](.github/workflows/desensitization.yml)
 
